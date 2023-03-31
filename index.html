@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" id="author">
+    <button onclick="connectToWs()">Connect</button>
+
+    <br />
+
+    <input type="text" id="message">
+    <button id="send">Send</button>
+    <div id="text"></div>
+    <script>
+        new WebSocket('ws://127.0.0.1:8000/ws')
+        function connectToWs() {
+            const ws = new WebSocket(`ws://127.0.0.1:8000/ws?username=${document.getElementById('author').value}`)
+
+            ws.addEventListener('message', (e) => {
+                const data = JSON.parse(e.data)
+                document.getElementById('text').innerText += `${data.author}: ${data.message}\n`
+            })
+
+            document.getElementById('send').addEventListener('click', () => {
+                const msg = document.getElementById('message')
+
+                ws.send(JSON.stringify({
+                    author: document.getElementById('author').value,
+                    message: msg.value
+                }))
+
+                msg.value = ''
+            })
+        }
+    </script>
+</body>
+</html>

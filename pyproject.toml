@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "projecta"
+version = "0.1.0"
+description = "Application for intern"
+authors = ["dajeo"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.88.0"
+uvicorn = "^0.20.0"
+SQLAlchemy = "^1.4.44"
+PyMySQL = "^1.0.2"
+python-jose = "^3.3.0"
+passlib = "^1.7.4"
+websockets = "^10.4"
+python-multipart = "^0.0.5"
+redis = "^4.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
